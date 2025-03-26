@@ -7,9 +7,13 @@ load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
 bot = commands.Bot(command_prefix=".", intents=discord.Intents.all())
 
-@bot.command()
-async def hello(ctx):
-    await ctx.send(f"Hello, {ctx.author.mention}!")   
+@bot.command(aliases=['auth', 'creator', 'about'])
+async def author(ctx):
+    embed = discord.Embed(title="Who Made Me?", description="This bot was created by alkaliiiscool", color=0x00ff00)
+    embed.set_author(name="alkaliiiscool", icon_url=ctx.author.avatar)
+    embed.set_thumbnail(url=ctx.author.avatar)
+    embed.set_footer(text="Thank you for using this bot!")
+    await ctx.send(embed=embed)
 
 @bot.event
 async def on_ready():
