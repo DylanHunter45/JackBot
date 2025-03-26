@@ -2,7 +2,7 @@
  The  /assets  directory is used to store images, fonts, and other static files. 
  2. Create a new file named  .env  in the root directory of the project.
 .env
-notesforme.txt
+notes.txt
 /assets 
 cogs/__pycache__/
 test.py
