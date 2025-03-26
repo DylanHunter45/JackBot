@@ -6,3 +6,4 @@ notesforme.txt
 /assets 
 cogs/__pycache__/
 test.py
+user_data.json
