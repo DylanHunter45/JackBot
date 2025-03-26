@@ -4,3 +4,4 @@
 .env
 notesforme.txt
 /assets 
+cogs/__pycache__/

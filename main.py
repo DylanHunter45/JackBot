@@ -1,4 +1,5 @@
 import os
+import asyncio
 import discord
 from dotenv import load_dotenv
 from discord.ext import commands
@@ -7,16 +8,14 @@ load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
 bot = commands.Bot(command_prefix=".", intents=discord.Intents.all())
 
-@bot.command(aliases=['auth', 'creator', 'about'])
-async def author(ctx):
-    embed = discord.Embed(title="Who Made Me?", description="This bot was created by alkaliiiscool", color=0x00ff00)
-    embed.set_author(name="alkaliiiscool", icon_url=ctx.author.avatar)
-    embed.set_thumbnail(url=ctx.author.avatar)
-    embed.set_footer(text="Thank you for using this bot!")
-    await ctx.send(embed=embed)
+async def load():
+    for filename in os.listdir('./cogs'):
+        if filename.endswith('.py'):
+            await bot.load_extension(f'cogs.{filename[:-3]}')
+            print(f'{filename} has been loaded!')
 
-@bot.event
-async def on_ready():
-    print(f'{bot.user} has connected to Discord!')
+async def main():
+    await load()
+    await bot.start(token)
 
-bot.run(token=token)
+asyncio.run(main())
