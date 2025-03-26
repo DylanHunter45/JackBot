@@ -69,7 +69,7 @@ class Coins(commands.Cog):
         if user_id not in self.user_data:
             await ctx.send(f'{ctx.author.mention} You are not opted in! Use .opt to start earning coins!')
         else:
-            await ctx.send(f'{ctx.author.mention} You have {self.user_data[user_id]["coins"]} coins! Earn more by using .daily, Consecutive daily claims will increase your multiplier!')
+            await ctx.send(f'{ctx.author.mention} You have {self.user_data[user_id]["coins"]} coins! Earn more by using .daily, consecutive daily claims will increase your multiplier!')
 
     #claim daily coins
     @commands.command(aliases=['daily', 'claim'])
