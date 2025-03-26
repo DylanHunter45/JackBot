@@ -1,0 +1,6 @@
+.env
+notesforme.txt
+/assets 
+ The  .env  file is used to store sensitive information such as API keys, database credentials, etc. This file should not be committed to the repository. 
+ The  /assets  directory is used to store images, fonts, and other static files. 
+ 2. Create a new file named  .env  in the root directory of the project.
