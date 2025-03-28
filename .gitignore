@@ -5,5 +5,7 @@
 notes.txt
 /assets 
 cogs/__pycache__/
+*.log
 test.py
 user_data.json
+logger/__pycache__/

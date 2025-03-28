@@ -1,10 +1,13 @@
 import discord
+import logging
+from logger.logger import JackBotLogger 
 from discord.ext import commands, tasks
 from discord.ext.commands import Cog
 
 class Master(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.logger = JackBotLogger._instance
 
     @tasks.loop(seconds=15)
     async def change_status(self):
@@ -12,7 +15,7 @@ class Master(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f'{self.bot.user} has connected to Discord!')
+        self.logger.log_info(f'{self.bot.user} has connected to Discord!')
         self.change_status.start()
         try:
             sync_commands = await self.bot.tree.sync()
