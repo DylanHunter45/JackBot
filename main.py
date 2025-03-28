@@ -16,8 +16,6 @@ logger.log_info("Bot is starting...")
 async def load():
     for filename in os.listdir('./cogs'):
         if filename.endswith('.py'):
-            if filename == 'CoinFlip.py':
-                continue
             await bot.load_extension(f'cogs.{filename[:-3]}')
             print(f'{filename} has been loaded!')
 
