@@ -1,14 +1,24 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 from discord.ext.commands import Cog
 
 class Master(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @tasks.loop(seconds=15)
+    async def change_status(self):
+        await self.bot.change_presence(activity=discord.Game(name="use .daily to earn coins!"))
+
     @commands.Cog.listener()
     async def on_ready(self):
         print(f'{self.bot.user} has connected to Discord!')
+        self.change_status.start()
+        try:
+            sync_commands = await self.bot.tree.sync()
+            print(f"{len(sync_commands)} commands registered")
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
     @commands.command(aliases=['auth', 'creator', 'about'])
     async def author(self, ctx):
