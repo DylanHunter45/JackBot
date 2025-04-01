@@ -2,9 +2,9 @@ import random
 
 # Card deck for Blackjack
 SUITS = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
-RANKS = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+RANKS = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
 VALUES = {
-    '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'J': 10, 'Q': 10, 'K': 10, 'A': 11
+    '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'Jack': 10, 'Queen': 10, 'King': 10, 'Ace': 11
 }
 
 class BlackjackGame:
@@ -31,7 +31,7 @@ class BlackjackGame:
         for card in hand:
             rank = card.split()[0]
             value += VALUES[rank]
-            if rank == 'A':
+            if rank == 'Ace':
                 aces += 1
 
         # Adjust for aces (Aces are worth 1 if the total value exceeds 21)
