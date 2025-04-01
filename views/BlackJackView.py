@@ -1,8 +1,7 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
-import random
-from cogs.BlackJack import BlackjackGame
+from models.BlackJackModel import BlackjackGame
 
 class BlackjackView(discord.ui.View):
     def __init__(self, interaction, game: BlackjackGame):

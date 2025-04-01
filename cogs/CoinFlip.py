@@ -38,5 +38,6 @@ class CoinFlip(commands.Cog):
             return
         
         await interaction.response.send_message(f"{interaction.user.global_name} is betting ${bet}! Pick Heads or Tails!", view=view)
+
 async def setup(bot):
     await bot.add_cog(CoinFlip(bot))
