@@ -1,13 +1,21 @@
  The  .env  file is used to store sensitive information such as API keys, database credentials, etc. This file should not be committed to the repository. 
  The  /assets  directory is used to store images, fonts, and other static files. 
  2. Create a new file named  .env  in the root directory of the project.
+
+#Environment Variables
 .env
-notes.txt
-/assets 
+
+# Pycache files
+__pycache__/
 cogs/__pycache__/
-cogs/Views/__pycache__/
-*.log
-test.py
-user_data.json
+Views/__pycache__/
 logger/__pycache__/
 
+#Logs and local files
+/assets 
+user_data.json
+*.log
+
+# Personal Tesing Files and Notes
+test.py
+notes.txt

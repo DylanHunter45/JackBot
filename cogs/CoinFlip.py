@@ -1,10 +1,7 @@
-import os
 import discord
-import random
-import json
 from logger.logger import JackBotLogger
 from cogs.Coins import load_user_data, save_user_data
-from cogs.Views import CoinFlipView
+from views import CoinFlipView
 from discord import app_commands
 from discord.ext import commands
 

@@ -1,7 +1,9 @@
 import discord
+import random
 from discord.ext import commands
 from discord import app_commands
-import random
+from views.BlackJackView import BlackjackView
+from logger.logger import JackBotLogger
 
 # Card deck for Blackjack
 SUITS = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
@@ -74,3 +76,34 @@ class BlackjackGame:
         if self.player_value < self.dealer_value:
             return "dealer_win"
         return "tie"
+
+class Blackjack(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+        self.logger = JackBotLogger._instance
+
+    @app_commands.command(name="blackjack", description="Play a game of Blackjack with a bet!")
+    async def blackjack(self, interaction: discord.Interaction, bet: int):
+        """Starts a Blackjack game with the user and a specified bet"""
+        if bet <= 0:
+            await interaction.response.send_message("You must place a valid bet greater than 0.")
+            return
+
+        # Create the game instance
+        game = BlackjackGame(bet)
+
+        # Create the view for the game
+        view = BlackjackView(interaction, game)
+
+        # Send the initial game message
+        content = f"**Welcome to Blackjack!**\nYour Hand: **{', '.join(game.player_hand)}**\n"
+        content += f"Dealer's Hand: **{game.dealer_hand[0]}** and [Hidden]\nYou placed a bet of {bet}."
+        message = await interaction.response.send_message(content, view=view)
+
+        # Set the message in the view
+        view.message = message
+
+async def setup(bot):
+    await bot.add_cog(Blackjack(bot))
+    logger = JackBotLogger._instance
+    logger.info("Blackjack cog has been loaded.")
